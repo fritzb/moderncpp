@@ -1,0 +1,173 @@
+#
+# $Id: README,v 1.1 2005/12/05 02:07:20 fzb Exp $
+#
+# Fritz Budiyanto
+# SUID: 5122970
+# fzb@stanford.edu
+#
+
+<-- Class diagram
+-------------------------------------------------------------------------------
+
+Glue Layer
+-------------------------------------------------------------------------------
+
+Instance
+    |
+    +---- InterfaceGlue
+    |           |
+    |           +---- ATMInterfaceGlue
+    |           |
+    |           +---- EthernetInterfaceGlue
+    |
+    +---- NodeGlue
+    |        |
+    |        +---- ATMSwitchGlue
+    |        |
+    |        +---- EthernetSwitchGlue
+    |        |
+    |        +---- IPRouter
+    |        |
+    |        +---- IPHost
+    |        
+    +---- ConnectionGlue
+    |
+    +---- ConfigGlue
+
+Instance::Manager
+    |
+    +---- ManagerImpl
+
+
+
+Glue Layer Value Type
+-------------------------------------------------------------------------------
+
+ManagerImpl::InstanceCount
+
+
+Gore Layer
+-------------------------------------------------------------------------------
+
+Packet
+
+NamedObject
+    |
+    +---- Interface
+    |        |
+    |        +---- ATMInterface
+    |        |
+    |        +---- EthernetInterface
+    |
+    +---- Node
+             |
+             +---- ATMSwitch
+             |
+             +---- EthernetSwitch
+             |
+             +---- IPHost
+             |
+             +---- IPRouter
+
+
+Gore Layer Value Type
+-------------------------------------------------------------------------------
+
+Packet::Size
+
+Interface::Statistic
+
+Interface::FilterCount
+
+Interface::DataRate
+    |
+    +---- ATMInterface::ATMDataRate
+    |
+    +---- EthernetInterface::EthernetDataRate
+
+Node::Degree
+
+Node::Slot
+
+Packet::Size
+
+Packet::Age
+
+
+Activity
+-------------------------------------------------------------------------------
+
+Activity
+    |
+    +---- ActivityImpl
+
+Activity::Manager
+    |
+    +---- ManagerImpl
+             |
+             +---- RealTimeManagerImpl
+
+RootNotifiee
+    |
+    +---- BaseNotifiee<Notifier>
+    |
+    +---- BaseNotifiee<Interface>
+    |        |
+    |        +---- Interface::Notifiee
+    |                  |
+    |                  +---- InterfaceReactor
+    |
+    +---- BaseNotifiee<IPHost>
+             |
+             +---- IPHost::Notifiee
+                      |
+                      +---- IPHostReactor
+
+Activity Value Type
+-------------------------------------------------------------------------------
+
+Numeric
+    |
+    +---- Time
+
+RealTimeManagerImpl::Ratio
+
+
+Others
+-------------------------------------------------------------------------------
+
+Log
+
+Nominal
+    |
+    +---- Numeric
+
+Exception
+    |
+    +---- RangeException
+    |
+    +---- ResourceException
+             |
+             +---- InternalException
+             |
+             +---- NameInUseException
+             |
+             +---- PermissionException
+             |
+             +---- ParserException
+
+<-- Neat stuff
+-------------------------------------------------------------------------------
+
+<-- Answer
+-------------------------------------------------------------------------------
+
+<-- Note
+-------------------------------------------------------------------------------
+
+<-- How to build?
+
+on elaine:
+
+make depend
+make all
