@@ -5,8 +5,6 @@
  *
  * Fritz Budiyanto, October 2005
  *
- * Copyright (c) 2005, Stanford University.
- * All rights reserved.
  */
 
 #ifndef __NOTIFIEE_H__
